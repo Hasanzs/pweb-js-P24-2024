@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopOnline</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>TOKOKU</h1>
+        <div class="cart-icon">
+            <span id="cart-count">0</span>
+            🛒
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Filters -->
+        <section class="filters">
+            <h2>Filter Produk</h2>
+            <div class="filter-category">
+                <label for="category-select">Kategori:</label>
+                <select id="category-select">
+                    <option value="all">Semua</option>
+                </select>
+            </div>
+            <div class="items-per-page">
+                <label for="items-per-page">Item per halaman:</label>
+                <select id="items-per-page">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section class="products" id="products">
+            <!-- Produk akan ditampilkan di sini menggunakan JavaScript -->
+        </section>
+
+        <!-- Pagination -->
+        <section class="pagination">
+            <button id="prev-page">Sebelumnya</button>
+            <span id="current-page">1</span>
+            <button id="next-page">Selanjutnya</button>
+        </section>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-button">&times;</span>
+            <h2>Keranjang Belanja</h2>
+            <div id="cart-items">
+                <!-- Item keranjang akan ditampilkan di sini -->
+            </div>
+            <div class="cart-summary">
+                <p>Total Produk: <span id="total-products">0</span></p>
+                <p>Total Harga: Rp<span id="total-price">0</span></p>
+            </div>
+            <button id="checkout-button">Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
