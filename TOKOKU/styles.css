@@ -345,6 +345,37 @@ main {
     transform: scale(1.02);
 }
 
+/* Style untuk search bar */
+.search-bar {
+    display: flex;
+    flex-grow: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     header {
@@ -368,5 +399,19 @@ main {
 
     .cart-icon {
         align-self: flex-end;
+        margin-top: 10px;
     }    
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .search-bar input {
+        width: 150px;
+    }
+
+    .search-bar input:focus {
+        width: 200px;
+    }
 }

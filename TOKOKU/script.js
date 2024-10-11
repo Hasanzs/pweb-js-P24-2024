@@ -26,6 +26,8 @@ const checkoutButton = document.getElementById('checkout-button');
 const prevPageBtn = document.getElementById('prev-page');
 const nextPageBtn = document.getElementById('next-page');
 const currentPageSpan = document.getElementById('current-page');
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
 
 // Fetch Data dari API
 async function fetchData() {
@@ -236,6 +238,51 @@ function checkout() {
     hideCart();
 }
 
+// Filter Produk Berdasarkan Pencarian
+function searchProducts(keyword) {
+    const filteredProducts = products.filter(product =>
+        product.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        product.description.toLowerCase().includes(keyword.toLowerCase())
+    );
+    renderSearchedProducts(filteredProducts);
+}
+
+// Render Produk Hasil Pencarian
+function renderSearchedProducts(filteredProducts) {
+    productsContainer.innerHTML = ''; // Kosongkan container produk
+
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+
+        const img = document.createElement('img');
+        img.src = product.thumbnail;
+        img.alt = product.title;
+
+        const details = document.createElement('div');
+        details.className = 'product-details';
+
+        const title = document.createElement('h3');
+        title.textContent = product.title;
+
+        const price = document.createElement('p');
+        price.textContent = `Rp${product.price.toLocaleString()}`;
+
+        const addButton = document.createElement('button');
+        addButton.textContent = 'Tambah ke Keranjang';
+        addButton.addEventListener('click', () => addToCart(product));
+
+        details.appendChild(title);
+        details.appendChild(price);
+        details.appendChild(addButton);
+
+        productCard.appendChild(img);
+        productCard.appendChild(details);
+
+        productsContainer.appendChild(productCard);
+    });
+}
+
 // Event Listeners
 categorySelect.addEventListener('change', () => {
     currentCategory = categorySelect.value;
@@ -270,6 +317,16 @@ nextPageBtn.addEventListener('click', () => {
     if (currentPage < totalPages) {
         currentPage++;
         renderProducts();
+    }
+});
+
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Mencegah reload halaman
+    const keyword = searchInput.value;
+    if (keyword) {
+        searchProducts(keyword); // Cari produk berdasarkan keyword
+    } else {
+        renderProducts(); // Tampilkan semua produk jika pencarian kosong
     }
 });
 
